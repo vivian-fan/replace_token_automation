@@ -1,5 +1,5 @@
 import ann.Handleable;
 
-@Handleable(sinceVersion = "1.0.0")
+@Handleable(sinceVersion = "DEV")
 public class Handler1 {
 }
