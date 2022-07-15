@@ -2,7 +2,7 @@ name: Replace Token Automation
 
 on:
   pull_request:
-    branches: [master, develop]
+    branches: [master]
     types: [closed]
 
 jobs:
@@ -18,10 +18,9 @@ jobs:
         with:
           find: "DEV"
           replace: "3.0.0"
-          include: "**/*.java"
           
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: master
