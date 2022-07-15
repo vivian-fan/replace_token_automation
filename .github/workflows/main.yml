@@ -1,0 +1,26 @@
+name: Replace Token Automation
+
+on:
+  pull_request:
+    branches: [master, develop]
+    types: [closed]
+
+jobs:
+  replace:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "DEV"
+          replace: "3.0.0"
+          include: "**/*.java"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: ${{ github.ref }}
